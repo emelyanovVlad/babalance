@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '3.0.4'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+}
+
+group 'vlad110kg'
+version '0'
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation (
+        'org.springframework.boot:spring-boot-starter-web',
+        'org.springframework.boot:spring-boot-starter-data-jpa',
+        'org.springframework.boot:spring-boot-starter-actuator',
+        'org.springframework.boot:spring-boot-starter-validation',
+        'org.telegram:telegrambots:6.5.0',
+        'org.postgresql:postgresql:42.5.4',
+        'org.apache.commons:commons-lang3:3.12.0',
+        'org.freemarker:freemarker:2.3.32',
+        'org.flywaydb:flyway-core:9.16.3'
+    )
+    compileOnly(
+        "org.projectlombok:lombok:$lombokV"
+    )
+
+    annotationProcessor (
+        "org.projectlombok:lombok:$lombokV"
+    )
+
+    testCompileOnly (
+        "org.projectlombok:lombok:$lombokV"
+    )
+    testAnnotationProcessor (
+        "org.projectlombok:lombok:$lombokV"
+    )
+
+    testImplementation "org.junit.jupiter:junit-jupiter:$jupiterV"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterV"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterV"
+}
+
+test {
+    useJUnitPlatform()
+}

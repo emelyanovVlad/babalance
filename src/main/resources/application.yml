@@ -1,0 +1,35 @@
+server:
+  port: 8080
+bot:
+  telegram:
+    name: tg-client
+    token: 1198510773:AAF8vSTx0YPY_lIN7-a7Dod-6LU4BAMlCdA
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/balance
+    username: balance
+    password: balance
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+  main:
+    allow-bean-definition-overriding: true
+  flyway:
+    baselineOnMigrate: true
+    locations: classpath:/db/migration
+logging:
+  log-dir: ${user.home}/babalance
+  level:
+    org:
+      springframework: INFO
