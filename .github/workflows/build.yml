@@ -30,14 +30,13 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Build Docker image
-        run: docker build -t vlad110kg/babalance:latest .
-
-      - name: Tag Docker image
-        run: docker tag vlad110kg/babalance:latest ${{ secrets.AWS_ECR_REPO }}/babalance:latest
-
-      - name: Push Docker image to Amazon ECR
-        run: docker push ${{ secrets.AWS_ECR_REPO }}/babalance:latest
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          no-cache: true
+          tags: ${{ secrets.AWS_ECR_REPO }}/babalance:latest
 
       - name: Delete untagged images from ECR
         run: |
