@@ -37,13 +37,17 @@ dependencies {
     testCompileOnly (
         "org.projectlombok:lombok:$lombokV"
     )
-    testAnnotationProcessor (
+    testAnnotationProcessor(
         "org.projectlombok:lombok:$lombokV"
     )
 
     testImplementation "org.junit.jupiter:junit-jupiter:$jupiterV"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterV"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterV"
+}
+
+springBoot {
+    mainClass = 'vlad110kg.ServiceApp'
 }
 
 test {
